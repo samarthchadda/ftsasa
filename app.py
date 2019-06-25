@@ -7,6 +7,8 @@ from nltk_summarization import nltk_summarizer
 from gensim.summarization import summarize 
 #other packages
 import spacy
+from spacy.lang.en import English
+Parser = English()
 nlp = spacy.load('en')
 import time
 
@@ -46,9 +48,9 @@ def sumy_summary(docx):
 
 
 def readingTime(mytext):
-	# total_words = len([token.text for token in nlp(mytext)])
+	total_words = len([token.text for token in nlp(mytext.decode('utf-8'))])
 	
-	total_words = len([ token.text for token in nlp(mytext)])
+	# total_words = len([ token.text for token in nlp(mytext)])
 	estimated_read_time = total_words/200.0
 	#200 -- average reading time
 	return estimated_read_time
